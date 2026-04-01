@@ -14,6 +14,9 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    
     <!-- Lenis & GSAP -->
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -59,48 +62,30 @@
     <!-- Hero Section -->
     <header class="section-hero" id="hero">
         <div class="hero-bg" id="hero-bg-interactive"></div>
-        <div class="blob-shape" id="hero-blob-interactive"></div>
-        
-        <!-- Floating Glass Media Cards -->
-        <div class="hero-glass-container parallax-layer" data-speed="0.05">
-            <div class="hero-media-card card-1 glasseffect float-slow">
-                <video src="assets/videos/letzgo-avatar.mp4" class="hero-media-video" autoplay loop muted playsinline></video>
-                <div class="hero-media-overlay">LetzGo AI</div>
-            </div>
-            <div class="hero-media-card card-2 glasseffect float-fast delay-1">
-                <video src="assets/videos/hueman.mp4" class="hero-media-video" autoplay loop muted playsinline></video>
-                <div class="hero-media-overlay">Hueman</div>
-            </div>
-            <div class="hero-media-card card-3 glasseffect float-medium delay-2" style="z-index:-1;">
-                <video src="assets/videos/ardot-1.mp4" class="hero-media-video" autoplay loop muted playsinline></video>
-                <div class="hero-media-overlay" style="color:var(--color-electric-cyan)">Ardot</div>
-            </div>
-        </div>
+        <div class="blob-shape minimal-glow" id="hero-blob-interactive"></div>
         
         <div class="hero-container container relative z-10">
-            <div class="badge slide-up-1" style="border-color: rgba(255,255,255,0.2); color: var(--color-white)">Machine Speed. Human Fidelity.</div>
+            <div class="badge minimal-badge slide-up-1">Machine Speed. Human Fidelity.</div>
             
-            <h1 class="hero-title">
+            <h1 class="hero-title minimal-title">
                 <div class="line-wrapper"><span class="kinetic-line">ENGINEERING</span></div>
-                <div class="line-wrapper"><span class="kinetic-line text-stroke">MEDIA</span></div>
-                <div class="line-wrapper"><span class="kinetic-line text-gradient">DOMINANCE.</span></div>
+                <div class="line-wrapper"><span class="kinetic-line text-gradient-minimal">MEDIA DOMINANCE</span></div>
             </h1>
             
-            <p class="hero-subtitle slide-up-3">
+            <p class="hero-subtitle minimal-subtitle slide-up-3">
                 Zero Crew Media is a premier, AI-first marketing agency bridging the gap between traditional agency bloat and next-generation production efficiency.
             </p>
             
-            <div class="hero-actions slide-up-4">
-                <a href="#showcase" class="btn-primary-2026">
+            <div class="hero-actions minimal-actions slide-up-4">
+                <a href="#showcase" class="btn-primary-minimal">
                     Explore Portfolio 
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-arrow"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    <!-- <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-arrow" style="margin-left: 4px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg> -->
                 </a>
-                <a href="#services" class="btn-secondary-2026">Capabilities</a>
+                <a href="#services" class="btn-secondary-minimal">Capabilities</a>
             </div>
         </div>
         
-        <div class="scroll-indicator">
-            <span>Scroll</span>
+        <div class="scroll-indicator minimal-scroll">
             <div class="indicator-line"></div>
         </div>
     </header>
@@ -118,7 +103,8 @@
                 <!-- Video Item 1 -->
                 <div class="reels-item">
                     <div class="reels-card">
-                        <video src="assets/videos/ardot-1.mp4" class="reels-video" loop muted playsinline></video>
+                        <div class="video-skeleton"></div>
+                        <video data-src="assets/videos/ardot-1.mp4" class="reels-video" preload="none" loop muted playsinline></video>
                         <div class="portfolio-overlay">
                             <h3 class="portfolio-title">Ardot, Nilambur</h3>
                         </div>
@@ -128,7 +114,8 @@
                 <!-- Video Item 2 -->
                 <div class="reels-item">
                     <div class="reels-card">
-                        <video src="assets/videos/letzgo-avatar.mp4" class="reels-video" loop muted playsinline></video>
+                        <div class="video-skeleton"></div>
+                        <video data-src="assets/videos/letzgo-avatar.mp4" class="reels-video" preload="none" loop muted playsinline></video>
                         <div class="portfolio-overlay">
                             <h3 class="portfolio-title">LetzGo Holidays, UAE</h3>
                         </div>
@@ -138,7 +125,8 @@
                 <!-- Video Item 3 -->
                 <div class="reels-item">
                     <div class="reels-card">
-                        <video src="assets/videos/dapperdame.mp4" class="reels-video" loop muted playsinline></video>
+                        <div class="video-skeleton"></div>
+                        <video data-src="assets/videos/dapperdame.mp4" class="reels-video" preload="none" loop muted playsinline></video>
                         <div class="portfolio-overlay">
                             <h3 class="portfolio-title">Dapperdame, Kochi</h3>
                         </div>
@@ -148,7 +136,8 @@
                 <!-- Video Item 4 -->
                  <div class="reels-item">
                     <div class="reels-card">
-                        <video src="assets/videos/ardot-2.mp4" class="reels-video" loop muted playsinline></video>
+                        <div class="video-skeleton"></div>
+                        <video data-src="assets/videos/ardot-2.mp4" class="reels-video" preload="none" loop muted playsinline></video>
                         <div class="portfolio-overlay">
                             <h3 class="portfolio-title">Ardot, Nilambur</h3>
                         </div>
@@ -158,7 +147,8 @@
                 <!-- Video Item 5 -->
                 <div class="reels-item">
                     <div class="reels-card">
-                        <video src="assets/videos/hueman.mp4" class="reels-video" loop muted playsinline></video>
+                        <div class="video-skeleton"></div>
+                        <video data-src="assets/videos/hueman.mp4" class="reels-video" preload="none" loop muted playsinline></video>
                         <div class="portfolio-overlay">
                             <h3 class="portfolio-title">Hueman, Nilambur</h3>
                         </div>
@@ -168,7 +158,8 @@
                 <!-- Video Item 6 -->
                 <div class="reels-item">
                     <div class="reels-card">
-                        <video src="assets/videos/letzgo-couple.mp4" class="reels-video" loop muted playsinline></video>
+                        <div class="video-skeleton"></div>
+                        <video data-src="assets/videos/letzgo-couple.mp4" class="reels-video" preload="none" loop muted playsinline></video>
                         <div class="portfolio-overlay">
                             <h3 class="portfolio-title">LetzGo Holidays, UAE</h3>
                         </div>
@@ -178,7 +169,8 @@
                 <!-- Video Item 7 -->
                 <div class="reels-item">
                     <div class="reels-card">
-                        <video src="assets/videos/ishowspeed.mp4" class="reels-video" loop muted playsinline></video>
+                        <div class="video-skeleton"></div>
+                        <video data-src="assets/videos/ishowspeed.mp4" class="reels-video" preload="none" loop muted playsinline></video>
                         <div class="portfolio-overlay">
                             <h3 class="portfolio-title">IShowSpeed</h3>
                         </div>
@@ -188,7 +180,8 @@
                 <!-- Video Item 8 -->
                  <div class="reels-item">
                     <div class="reels-card">
-                        <video src="assets/videos/ardot-3.mp4" class="reels-video" loop muted playsinline></video>
+                        <div class="video-skeleton"></div>
+                        <video data-src="assets/videos/ardot-3.mp4" class="reels-video" preload="none" loop muted playsinline></video>
                         <div class="portfolio-overlay">
                             <h3 class="portfolio-title">Ardot, Nilambur</h3>
                         </div>
@@ -198,7 +191,8 @@
                 <!-- Video Item 9 -->
                 <div class="reels-item">
                     <div class="reels-card">
-                        <video src="assets/videos/speicebin.mp4" class="reels-video" loop muted playsinline></video>
+                        <div class="video-skeleton"></div>
+                        <video data-src="assets/videos/speicebin.mp4" class="reels-video" preload="none" loop muted playsinline></video>
                         <div class="portfolio-overlay">
                             <h3 class="portfolio-title">Spicebin, Kochi</h3>
                         </div>
@@ -208,7 +202,8 @@
                 <!-- Video Item 10 -->
                 <div class="reels-item">
                     <div class="reels-card">
-                        <video src="assets/videos/letzgo-penguin.mp4" class="reels-video" loop muted playsinline></video>
+                        <div class="video-skeleton"></div>
+                        <video data-src="assets/videos/letzgo-penguin.mp4" class="reels-video" preload="none" loop muted playsinline></video>
                         <div class="portfolio-overlay">
                             <h3 class="portfolio-title">LetzGo Holidays, UAE</h3>
                         </div>
@@ -218,7 +213,8 @@
                 <!-- Video Item 11 -->
                 <div class="reels-item">
                     <div class="reels-card">
-                        <video src="assets/videos/silus.mp4" class="reels-video" loop muted playsinline></video>
+                        <div class="video-skeleton"></div>
+                        <video data-src="assets/videos/silus.mp4" class="reels-video" preload="none" loop muted playsinline></video>
                         <div class="portfolio-overlay">
                             <h3 class="portfolio-title">Silus Naturals, Thrissur</h3>
                         </div>
@@ -228,7 +224,8 @@
                 <!-- Video Item 12 -->
                  <div class="reels-item">
                     <div class="reels-card">
-                        <video src="assets/videos/teaching-cart.mp4" class="reels-video" loop muted playsinline></video>
+                        <div class="video-skeleton"></div>
+                        <video data-src="assets/videos/teaching-cart.mp4" class="reels-video" preload="none" loop muted playsinline></video>
                         <div class="portfolio-overlay">
                             <h3 class="portfolio-title">TeachingCart, Kochi</h3>
                         </div>
@@ -238,17 +235,37 @@
                 <!-- Video Item 13 -->
                  <div class="reels-item">
                     <div class="reels-card">
-                        <video src="assets/videos/tovino.mp4" class="reels-video" loop muted playsinline></video>
+                        <div class="video-skeleton"></div>
+                        <video data-src="assets/videos/tovino.mp4" class="reels-video" preload="none" loop muted playsinline></video>
                         <div class="portfolio-overlay">
                             <h3 class="portfolio-title">Tovino</h3>
                         </div>
                     </div>
                 </div>
+
+                <!-- Video Item 14 -->
+                 <div class="reels-item">
+                    <div class="reels-card">
+                        <div class="video-skeleton"></div>
+                        <video data-src="assets/videos/majzi.mp4" class="reels-video" preload="none" loop muted playsinline></video>
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Majzi</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Item 15 -->
+                 <div class="reels-item">
+                    <div class="reels-card">
+                        <div class="video-skeleton"></div>
+                        <video data-src="assets/videos/letzGo-3.mp4" class="reels-video" preload="none" loop muted playsinline></video>
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">LetzGo Holidays</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="center-btn">
-                <button class="btn-secondary">Load More Archives</button>
-            </div>
+
         </div>
     </section>
 
@@ -359,19 +376,26 @@
     <section id="clients" class="section-marquee relative">
         <div class="fade-edge left"></div>
         <div class="fade-edge right"></div>
-        
-        <h4 class="marquee-title">Synthesizing Outputs With</h4>
-        
+        <h4 class="marquee-title">Stack & Partners</h4>
         <div class="marquee-container">
-            <div class="marquee-track">
-                <span>Midjourney V6</span>
-                <span>RunwayML</span>
-                <span>Stable Diffusion</span>
-                <span>ElevenLabs</span>
-                <span>OpenAI GPT-4o</span>
-                <span>Claude 3.5 Opus</span>
-                <span>Vanilla JS</span>
-                <span>GSAP</span>
+            <div class="marquee-track marquee-track-reverse">
+                <img src="assets/clients/DB-Export-logo.jpg" alt="DB Export" class="client-logo">
+                <img src="assets/clients/aone-fresh.png" alt="A1 Fresh" class="client-logo">
+                <img src="assets/clients/ardot.png" alt="Ardot" class="client-logo">
+                <img src="assets/clients/cairo-sketches.png" alt="Cairo Sketches" class="client-logo">
+                <img src="assets/clients/charwood.jpg" alt="Charwood" class="client-logo">
+                <img src="assets/clients/dapperdame.png" alt="Dapperdame" class="client-logo">
+                <img src="assets/clients/db-fries.png" alt="DB Fries" class="client-logo">
+                <img src="assets/clients/elat-naturals.png" alt="Elat Naturals" class="client-logo">
+                <img src="assets/clients/hueman.png" alt="Hueman" class="client-logo">
+                <img src="assets/clients/jeenam.jpg" alt="Jeenam" class="client-logo">
+                <img src="assets/clients/letzgo-holidays.jpg" alt="Letzgo Holidays" class="client-logo">
+                <img src="assets/clients/majzi.jpg" alt="Majzi" class="client-logo">
+                <img src="assets/clients/revotrips.png" alt="RevoTrips" class="client-logo">
+                <img src="assets/clients/silus.png" alt="Silus" class="client-logo">
+                <img src="assets/clients/spice-bin-logo.png" alt="Spicebin" class="client-logo">
+                <img src="assets/clients/teaching-cart.png" alt="Teaching Cart" class="client-logo">
+                <img src="assets/clients/urban.jpg" alt="Urban" class="client-logo">
             </div>
         </div>
     </section>

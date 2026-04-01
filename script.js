@@ -55,24 +55,37 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Hero Animations
+    // Hero Animations - 2026 Kinetic Reveal
     const heroTl = gsap.timeline();
     
     heroTl.fromTo('.slide-up-1', 
         { y: 30, opacity: 0 }, 
         { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.2 })
-    .fromTo('.slide-up-2', 
-        { y: 40, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, '-=0.6')
+    .fromTo('.kinetic-line', 
+        { y: '120%' }, 
+        { y: '0%', duration: 1.2, stagger: 0.15, ease: 'expo.out' }, '-=0.6')
     .fromTo('.slide-up-3', 
         { y: 30, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, '-=0.6')
+        { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, '-=0.8')
     .fromTo('.slide-up-4', 
         { y: 30, opacity: 0 }, 
         { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, '-=0.6')
+    .fromTo('.hero-glass-container', 
+        { opacity: 0, scale: 0.95 },
+        { opacity: 1, scale: 1, duration: 1.5, ease: 'power2.out' }, '-=1.2')
     .fromTo('.scroll-indicator', 
         { opacity: 0 }, 
-        { opacity: 0.5, duration: 1, ease: 'power2.inOut' }, '-=0.4');
+        { opacity: 0.5, duration: 1, ease: 'power2.inOut' }, '-=0.5');
+
+    // Floating cards mouse reaction
+    document.addEventListener('mousemove', (e) => {
+        const xPos = (e.clientX / window.innerWidth - 0.5) * 20;
+        const yPos = (e.clientY / window.innerHeight - 0.5) * 20;
+        
+        gsap.to('.card-1', { x: xPos * 1.5, y: yPos * 1.5, duration: 2, ease: 'power2.out' });
+        gsap.to('.card-2', { x: -xPos * 2, y: -yPos * 2, duration: 2, ease: 'power2.out' });
+        gsap.to('.card-3', { x: xPos * 0.8, y: -yPos * 1.2, duration: 2, ease: 'power2.out' });
+    });
 
     // Hero Parallax Background
     gsap.to('#hero-bg-interactive', {
@@ -184,6 +197,27 @@ document.addEventListener("DOMContentLoaded", () => {
         rootMargin: '0px',
         threshold: 0.5 // Play when 50% in view
     };
+
+    const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const video = entry.target;
+                if (video.dataset.src && !video.getAttribute('src')) {
+                    video.src = video.dataset.src;
+                    video.load();
+                    
+                    const card = video.closest('.reels-card');
+                    if (card) {
+                        const skeleton = card.querySelector('.video-skeleton');
+                        video.addEventListener('loadeddata', () => {
+                            if (skeleton) skeleton.classList.add('loaded');
+                        }, { once: true });
+                    }
+                    observer.unobserve(video);
+                }
+            }
+        });
+    }, { rootMargin: '300px 0px' });
 
     const videoObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -304,6 +338,9 @@ document.addEventListener("DOMContentLoaded", () => {
             updateMuteIcon(card, video.muted);
         });
 
+        if (video.dataset.src) {
+            lazyLoadObserver.observe(video);
+        }
         videoObserver.observe(video);
     });
 
@@ -311,11 +348,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // Setup infinite marquee duplicating items natively
-    const marqueeTrack = document.querySelector('.marquee-track');
-    if (marqueeTrack) {
-        const marqueeClone = marqueeTrack.innerHTML;
-        marqueeTrack.innerHTML += marqueeClone; // Double the contents for seamless scroll
-    }
+    const marqueeTracks = document.querySelectorAll('.marquee-track');
+    marqueeTracks.forEach(track => {
+        const marqueeClone = track.innerHTML;
+        track.innerHTML += marqueeClone; // Double the contents for seamless scroll
+    });
 
     // --- Custom Cursor & Magnetic Interactions ---
     const cursor = document.getElementById('custom-cursor');
