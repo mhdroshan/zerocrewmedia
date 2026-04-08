@@ -431,32 +431,34 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 3D Tilt on Reels Cards
+    // 3D Tilt on Reels Cards - Desktop Only
     const reelsCards = document.querySelectorAll('.reels-card');
-    reelsCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const xOffset = (x - rect.width/2) / rect.width;
-            const yOffset = (y - rect.height/2) / rect.height;
+    if (window.matchMedia("(pointer: fine)").matches) {
+        reelsCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const xOffset = (x - rect.width/2) / rect.width;
+                const yOffset = (y - rect.height/2) / rect.height;
 
-            gsap.to(card, {
-                rotationY: xOffset * 15,
-                rotationX: -yOffset * 15,
-                transformPerspective: 900,
-                ease: 'power1.out',
-                duration: 0.4
+                gsap.to(card, {
+                    rotationY: xOffset * 15,
+                    rotationX: -yOffset * 15,
+                    transformPerspective: 900,
+                    ease: 'power1.out',
+                    duration: 0.4
+                });
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    rotationY: 0,
+                    rotationX: 0,
+                    ease: 'power2.out',
+                    duration: 0.6
+                });
             });
         });
-        
-        card.addEventListener('mouseleave', () => {
-            gsap.to(card, {
-                rotationY: 0,
-                rotationX: 0,
-                ease: 'power2.out',
-                duration: 0.6
-            });
-        });
-    });
+    }
 });

@@ -745,8 +745,10 @@ section {
     pointer-events: none;
 }
 
-.reels-card:hover .reels-video { transform: scale(1.05); }
-.reels-card:hover .portfolio-overlay { opacity: 1; }
+@media (hover: hover) {
+    .reels-card:hover .reels-video { transform: scale(1.05); }
+    .reels-card:hover .portfolio-overlay { opacity: 1; }
+}
 
 .brand-logo {
     height: 32px;
@@ -1119,11 +1121,17 @@ section {
     transform: scale(0.9);
 }
 
-/* Show play button when card is hovered or video is paused */
-.reels-card.is-paused .play-pause-btn,
-.reels-card:hover .play-pause-btn {
+/* Show play button when card is hovered (desktop only) or video is paused */
+.reels-card.is-paused .play-pause-btn {
     opacity: 1;
     transform: scale(1);
+}
+
+@media (hover: hover) {
+    .reels-card:hover .play-pause-btn {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .mute-btn {
