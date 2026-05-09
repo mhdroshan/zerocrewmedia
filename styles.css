@@ -261,7 +261,7 @@ ul { list-style: none; }
     }
     .nav-links.active {
         right: 0;
-        width: 100vw;
+        width: 100%;
     }
     .nav-links .nav-link {
         font-size: 1.75rem;
@@ -709,12 +709,27 @@ section {
     grid-template-columns: repeat(1, 1fr);
     gap: 1.5rem;
     margin-bottom: 2rem;
+    scroll-snap-type: y mandatory; /* Native snap fallback */
 }
 @media (min-width: 640px) { .reels-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .reels-grid { grid-template-columns: repeat(4, 1fr); } }
 
 .reels-item {
     width: 100%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+}
+
+@media (max-width: 640px) {
+    .reels-item {
+        /* height: calc(100vh - 120px); */
+        display: flex;
+        align-items: center;
+    }
+    .reels-card {
+        height: 100%;
+        width: 100%;
+    }
 }
 
 .reels-card {

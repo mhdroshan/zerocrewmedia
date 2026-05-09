@@ -171,8 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
             scrub: true
         }
     });
-
-    // 3. Reels Showcase Animation
+    // 3. Reels Showcase Animation & Snapping
     setTimeout(() => {
         // Setup initial GSAP reveals for reels items
         gsap.fromTo('.reels-item',
@@ -189,6 +188,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         );
+
+        // Reels Snapping UX (Instagram-like feel)
+        ScrollTrigger.create({
+            trigger: ".reels-grid",
+            start: "top 20%",
+            end: "bottom 80%",
+            snap: {
+                snapTo: ".reels-item",
+                duration: { min: 0.2, max: 0.6 },
+                delay: 0,
+                ease: "power2.inOut"
+            }
+        });
     }, 100);
 
     // 4. Video Controls & Intersection Observer
@@ -228,10 +240,26 @@ document.addEventListener("DOMContentLoaded", () => {
             const isManuallyPaused = card.dataset.manuallyPaused === 'true';
 
             if (entry.isIntersecting) {
+                // Add active state animation (Reels-like pop)
+                gsap.to(card, { scale: 1.02, duration: 0.5, ease: "power2.out" });
+
                 if (!isManuallyPaused) {
+                    // Mute all other videos first
+                    document.querySelectorAll('.reels-video').forEach(v => {
+                        if (v !== video) {
+                            v.muted = true;
+                            const otherCard = v.closest('.reels-card');
+                            if (otherCard) updateMuteIcon(otherCard, true);
+                        }
+                    });
+
                     const playPromise = video.play();
                     if (playPromise !== undefined) {
                         playPromise.then(() => {
+                            // Unmute this video
+                            video.muted = false;
+                            updateMuteIcon(card, false);
+                            
                             card.classList.remove('is-paused');
                             updatePlayPauseIcon(card, false);
                         }).catch(e => {
@@ -242,7 +270,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
             } else {
+                // Remove active state animation
+                gsap.to(card, { scale: 1, duration: 0.5, ease: "power2.out" });
+
                 video.pause();
+                video.muted = true; // Also mute when leaving viewport
+                updateMuteIcon(card, true);
                 card.classList.add('is-paused');
                 updatePlayPauseIcon(card, true);
             }
@@ -334,7 +367,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
         muteBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            video.muted = !video.muted;
+            const wasMuted = video.muted;
+            video.muted = !wasMuted;
+            
+            if (!video.muted) {
+                // If unmuting, mute all others
+                document.querySelectorAll('.reels-video').forEach(v => {
+                    if (v !== video) {
+                        v.muted = true;
+                        const otherCard = v.closest('.reels-card');
+                        if (otherCard) updateMuteIcon(otherCard, true);
+                    }
+                });
+            }
+            
             updateMuteIcon(card, video.muted);
         });
 
